@@ -1,0 +1,1287 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>AgriSathi | AI-Powered Smart Farming & Market Platform</title>
+  <meta name="description" content="AgriSathi is an AI-powered smart farming platform bringing crop monitoring, weather intelligence, AI advisory, and a direct marketplace to modern farmers.">
+  
+  <!-- Google Fonts: Outfit & Plus Jakarta Sans -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  
+  <!-- Chart.js CDN for interactive graphs -->
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+  <!-- Lucide Icons -->
+  <script src="https://unpkg.com/lucide@latest"></script>
+
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body class="agri-app">
+
+  <!-- Ambient Light Spot Backgrounds -->
+  <div class="ambient-glow glow-1"></div>
+  <div class="ambient-glow glow-2"></div>
+  <div class="ambient-glow glow-3"></div>
+
+  <!-- ================================================== -->
+  <!-- 1. NAVIGATION BAR -->
+  <!-- ================================================== -->
+  <header class="navbar-header" id="navbar">
+    <div class="nav-container">
+      <!-- Left: Logo -->
+      <a href="#hero" class="nav-brand">
+        <div class="brand-icon">
+          <i data-lucide="sprout"></i>
+        </div>
+        <span class="brand-name">AgriSathi<span class="brand-dot">.</span></span>
+      </a>
+
+      <!-- Center: Links -->
+      <nav class="nav-menu" id="navMenu">
+        <a href="#hero" class="nav-link active">Home</a>
+        <a href="#dashboard-section" class="nav-link">Dashboard</a>
+        <a href="#crop-monitoring" class="nav-link">Crop Sensing</a>
+        <a href="#marketplace" class="nav-link">Marketplace</a>
+        <a href="#ai-assistant" class="nav-link">AI Assistant</a>
+      </nav>
+
+      <!-- Right: Action Buttons -->
+      <div class="nav-actions">
+        <button class="btn btn-ghost" id="openAuthBtn">Sign In</button>
+        <button class="btn btn-primary" id="getStartedBtn">
+          <span>Get Started</span>
+          <i data-lucide="arrow-right"></i>
+        </button>
+        <button class="mobile-toggle" id="mobileToggle" aria-label="Toggle menu">
+          <i data-lucide="menu"></i>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- Mobile Drawer Navigation -->
+  <div class="mobile-drawer" id="mobileDrawer">
+    <div class="drawer-header">
+      <div class="nav-brand">
+        <div class="brand-icon"><i data-lucide="sprout"></i></div>
+        <span class="brand-name">AgriSathi</span>
+      </div>
+      <button class="drawer-close" id="drawerClose"><i data-lucide="x"></i></button>
+    </div>
+    <nav class="drawer-links">
+      <a href="#hero" class="drawer-link">Home</a>
+      <a href="#dashboard-section" class="drawer-link">Dashboard</a>
+      <a href="#crop-monitoring" class="drawer-link">Crop Sensing</a>
+      <a href="#marketplace" class="drawer-link">Marketplace</a>
+      <a href="#ai-assistant" class="drawer-link">AI Assistant</a>
+    </nav>
+    <div class="drawer-actions">
+      <button class="btn btn-ghost w-full" onclick="openAuthModal('signin')">Sign In</button>
+      <button class="btn btn-primary w-full" onclick="openAuthModal('signup')">Get Started</button>
+    </div>
+  </div>
+
+  <main>
+    <!-- ================================================== -->
+    <!-- 2. HERO SECTION -->
+    <!-- ================================================== -->
+    <section class="hero-section" id="hero">
+      <div class="hero-container">
+        <!-- Hero Left Content -->
+        <div class="hero-left">
+          <div class="badge hero-badge">
+            <span class="badge-dot pulse"></span>
+            <i data-lucide="sparkles" class="badge-icon"></i>
+            <span>AI-Powered Smart Agricultural Platform</span>
+          </div>
+
+          <h1 class="hero-headline">
+            Grow smarter.<br>
+            <span class="gradient-text">Harvest bigger.</span>
+          </h1>
+
+          <p class="hero-description">
+            AgriSathi unifies AI crop advisory, live IoT field telemetry, hyper-local weather intelligence, and a zero-middleman APMC marketplace into one simple platform.
+          </p>
+
+          <div class="hero-cta-group">
+            <button class="btn btn-primary btn-lg glow-effect" id="heroDashboardBtn">
+              <i data-lucide="layout-dashboard"></i>
+              <span>Explore Dashboard</span>
+            </button>
+            <a href="#marketplace" class="btn btn-secondary btn-lg">
+              <i data-lucide="shopping-bag"></i>
+              <span>Open Marketplace</span>
+            </a>
+          </div>
+
+          <!-- Trust Indicators -->
+          <div class="trust-indicators">
+            <div class="trust-item">
+              <i data-lucide="check-circle-2" class="trust-icon"></i>
+              <span>Real-time Field Telemetry</span>
+            </div>
+            <div class="trust-item">
+              <i data-lucide="check-circle-2" class="trust-icon"></i>
+              <span>Localized AI Advisory</span>
+            </div>
+            <div class="trust-item">
+              <i data-lucide="check-circle-2" class="trust-icon"></i>
+              <span>Direct Mandi Trade</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Hero Right Visual Showcase -->
+        <div class="hero-right">
+          <div class="hero-visual-card">
+            <div class="hero-image-wrapper">
+              <img src="images/hero-farm.jpg" alt="AgriSathi Smart Farm Field" class="hero-img">
+              <div class="hero-overlay-gradient"></div>
+
+              <!-- Floating UI Card 1: Crop Health -->
+              <div class="floating-card card-crop-health float-anim-1">
+                <div class="floating-card-icon icon-emerald">
+                  <i data-lucide="activity"></i>
+                </div>
+                <div class="floating-card-content">
+                  <span class="floating-card-label">Crop Vigour Index</span>
+                  <div class="floating-card-val-group">
+                    <span class="floating-card-value">92%</span>
+                    <span class="status-pill pill-emerald"><span class="pulse-dot"></span> Optimal</span>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Floating UI Card 2: Soil Moisture -->
+              <div class="floating-card card-soil-moisture float-anim-2">
+                <div class="floating-card-icon icon-teal">
+                  <i data-lucide="droplets"></i>
+                </div>
+                <div class="floating-card-content">
+                  <span class="floating-card-label">Soil Hydration</span>
+                  <div class="floating-card-val-group">
+                    <span class="floating-card-value">68%</span>
+                    <span class="status-pill pill-teal">Target Met</span>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Floating UI Card 3: Today's Weather -->
+              <div class="floating-card card-weather float-anim-3">
+                <div class="floating-card-icon icon-amber">
+                  <i data-lucide="sun"></i>
+                </div>
+                <div class="floating-card-content">
+                  <span class="floating-card-label">Vadodara Field Weather</span>
+                  <div class="floating-card-val-group">
+                    <span class="floating-card-value">28°C</span>
+                    <span class="floating-card-sub">Clear Sky</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================================================== -->
+    <!-- 3. PROBLEM & SOLUTION BENTO SECTION -->
+    <!-- ================================================== -->
+    <section class="section problem-solution-section" id="problem-solution">
+      <div class="container">
+        <div class="section-header text-center">
+          <span class="section-tag">CHALLENGES & INNOVATION</span>
+          <h2 class="section-title">Agriculture without guesswork.</h2>
+          <p class="section-subtitle">Traditional farming suffers from unpredictable weather, delayed pest alerts, and fragmented market rates. AgriSathi delivers real-time clarity.</p>
+        </div>
+
+        <div class="grid grid-4 problem-cards">
+          <!-- Card 1 -->
+          <div class="problem-card">
+            <div class="card-icon-box bg-emerald">
+              <i data-lucide="sprout"></i>
+            </div>
+            <h3>Crop Uncertainty</h3>
+            <p>Spot fungal outbreaks, nutrient deficits, and water stress before visible damage occurs.</p>
+          </div>
+
+          <!-- Card 2 -->
+          <div class="problem-card">
+            <div class="card-icon-box bg-teal">
+              <i data-lucide="cloud-rain"></i>
+            </div>
+            <h3>Weather Volatility</h3>
+            <p>Hyper-local micro-climate forecasts safeguard spraying windows and harvesting schedules.</p>
+          </div>
+
+          <!-- Card 3 -->
+          <div class="problem-card">
+            <div class="card-icon-box bg-amber">
+              <i data-lucide="droplet"></i>
+            </div>
+            <h3>Resource Wastage</h3>
+            <p>Precision fertigation and automated drip schedules save up to 25% water and fertilizer.</p>
+          </div>
+
+          <!-- Card 4 -->
+          <div class="problem-card">
+            <div class="card-icon-box bg-indigo">
+              <i data-lucide="trending-up"></i>
+            </div>
+            <h3>Market Price Gaps</h3>
+            <p>Direct APMC mandi data empowers farmers to negotiate better rates with zero middleman cuts.</p>
+          </div>
+        </div>
+
+        <!-- Solution Showcase Banner -->
+        <div class="solution-banner">
+          <div class="solution-banner-content">
+            <div class="solution-badge"><i data-lucide="sparkles"></i> The AgriSathi Ecosystem</div>
+            <h2>Everything unified under one intelligent dashboard.</h2>
+            <p>Combining IoT field telemetry, satellite multi-spectral imaging, localized LLM models, and direct buyer logistics into an intuitive experience.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================================================== -->
+    <!-- 4. CORE FEATURES (BENTO GRID) -->
+    <!-- ================================================== -->
+    <section class="section features-section" id="features">
+      <div class="container">
+        <div class="section-header text-center">
+          <span class="section-tag">POWERFUL MODULES</span>
+          <h2 class="section-title">Everything your farm needs in one place.</h2>
+          <p class="section-subtitle">Designed from the ground up for smallholders, progressive agronomists, and farm managers.</p>
+        </div>
+
+        <div class="bento-grid">
+          <!-- Feature 1: AI Crop Assistant (Large Span) -->
+          <div class="bento-card bento-span-2 bento-ai">
+            <div class="bento-badge"><i data-lucide="bot"></i> AI Core</div>
+            <h3>Conversational AI Agronomist</h3>
+            <p>Get instant advice in natural language on pest management, irrigation timing, and soil health.</p>
+            
+            <div class="bento-mini-widget mini-ai-widget">
+              <div class="mini-query">
+                <span class="query-avatar">👨‍🌾</span>
+                <span class="query-text">"How much water does my wheat field need today?"</span>
+              </div>
+              <div class="mini-response">
+                <i data-lucide="sparkles" class="icon-sparkle"></i>
+                <span>"Optimal moisture is 68%. Delay irrigation until 5:00 PM after heat peak."</span>
+              </div>
+            </div>
+
+            <div class="bento-footer">
+              <a href="#ai-assistant" class="bento-link">Launch AI Assistant <i data-lucide="arrow-right"></i></a>
+            </div>
+          </div>
+
+          <!-- Feature 2: Smart Crop Monitoring -->
+          <div class="bento-card bento-monitoring">
+            <div class="bento-icon"><i data-lucide="scan"></i></div>
+            <h3>Smart Field Sensing</h3>
+            <p>Satellite multi-spectral index & IoT sensors continuously score crop vigour and disease risk.</p>
+            <div class="bento-mini-widget mini-health-bar">
+              <div class="health-label">
+                <span>Field Health Index</span>
+                <span class="text-emerald font-bold">92 / 100</span>
+              </div>
+              <div class="progress-bar-bg">
+                <div class="progress-bar-fill" style="width: 92%;"></div>
+              </div>
+            </div>
+            <div class="bento-footer">
+              <a href="#crop-monitoring" class="bento-link">Explore Sensing <i data-lucide="arrow-right"></i></a>
+            </div>
+          </div>
+
+          <!-- Feature 3: Weather Intelligence -->
+          <div class="bento-card bento-weather">
+            <div class="bento-icon"><i data-lucide="cloud-sun"></i></div>
+            <h3>Weather Intelligence</h3>
+            <p>Micro-climate radar forecast with automated spraying alerts and rainfall notifications.</p>
+            <div class="bento-mini-widget mini-weather-chip">
+              <i data-lucide="cloud-rain" class="text-teal"></i>
+              <div>
+                <strong>Light Showers Expected</strong>
+                <div class="sub-sm">Tomorrow afternoon • 30% Prob</div>
+              </div>
+            </div>
+            <div class="bento-footer">
+              <a href="#weather" class="bento-link">View Forecast <i data-lucide="arrow-right"></i></a>
+            </div>
+          </div>
+
+          <!-- Feature 4: Soil Telemetry -->
+          <div class="bento-card bento-soil">
+            <div class="bento-icon"><i data-lucide="layers"></i></div>
+            <h3>Soil Telemetry</h3>
+            <p>Track real-time moisture levels, N-P-K nutrient saturation, pH balance, and soil temperature.</p>
+            <div class="bento-mini-widget mini-soil-grid">
+              <div class="soil-stat"><span>Moisture</span><strong>68%</strong></div>
+              <div class="soil-stat"><span>pH Index</span><strong>6.5 (Optimal)</strong></div>
+              <div class="soil-stat"><span>Nitrogen</span><strong>Optimal</strong></div>
+            </div>
+            <div class="bento-footer">
+              <a href="#dashboard-section" class="bento-link">Soil Breakdown <i data-lucide="arrow-right"></i></a>
+            </div>
+          </div>
+
+          <!-- Feature 5: Market Intelligence -->
+          <div class="bento-card bento-span-2 bento-market">
+            <div class="bento-badge"><i data-lucide="line-chart"></i> Live APMC Ticker</div>
+            <h3>APMC Market Intelligence</h3>
+            <p>Track live commodity prices across Gujarat & Maharashtra mandis to lock in maximum selling profit.</p>
+            <div class="bento-mini-widget mini-market-ticker">
+              <div class="ticker-item">
+                <span>Wheat (Vadodara)</span>
+                <span class="ticker-price">₹2,450 / qtl <span class="trend-up">▲ 3.2%</span></span>
+              </div>
+              <div class="ticker-item">
+                <span>Tomato (Ahmedabad)</span>
+                <span class="ticker-price">₹1,850 / qtl <span class="trend-up">▲ 5.1%</span></span>
+              </div>
+            </div>
+            <div class="bento-footer">
+              <a href="#marketplace" class="bento-link">View Market Rates <i data-lucide="arrow-right"></i></a>
+            </div>
+          </div>
+
+          <!-- Feature 6: Farmer Marketplace -->
+          <div class="bento-card bento-marketplace">
+            <div class="bento-icon"><i data-lucide="shopping-bag"></i></div>
+            <h3>Direct Mandi Marketplace</h3>
+            <p>Connect directly with verified wholesale buyers, retail chains, and food processors.</p>
+            <div class="bento-footer mt-auto">
+              <a href="#marketplace" class="bento-link">Visit Marketplace <i data-lucide="arrow-right"></i></a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================================================== -->
+    <!-- 5. AI FARM ASSISTANT SECTION -->
+    <!-- ================================================== -->
+    <section class="section ai-section" id="ai-assistant">
+      <div class="container">
+        <div class="ai-wrapper">
+          <div class="ai-header text-center">
+            <div class="ai-pill"><i data-lucide="sparkles"></i> Conversational AI Assistant</div>
+            <h2 class="section-title">Meet your digital agronomist.</h2>
+            <p class="section-subtitle">Ask questions about field telemetry, crop diseases, fertilizer dosage, or mandi price trends.</p>
+          </div>
+
+          <!-- AI Chat Container -->
+          <div class="ai-chat-card">
+            <div class="chat-header">
+              <div class="chat-bot-info">
+                <div class="chat-avatar">
+                  <i data-lucide="bot"></i>
+                </div>
+                <div>
+                  <h4 class="chat-bot-title">AgriSathi Intelligence Engine</h4>
+                  <span class="chat-bot-status"><span class="status-dot pulse"></span> Online • Telemetry Synchronized</span>
+                </div>
+              </div>
+              <div class="chat-actions">
+                <span class="tag-badge">Agri-LLM v2.4</span>
+              </div>
+            </div>
+
+            <!-- Chat Window -->
+            <div class="chat-messages" id="chatMessages">
+              <!-- Farmer Message -->
+              <div class="message msg-user">
+                <div class="msg-avatar">👨‍🌾</div>
+                <div class="msg-bubble">
+                  <p>My tomato leaves are turning yellow. What should I check?</p>
+                  <span class="msg-time">10:42 AM</span>
+                </div>
+              </div>
+
+              <!-- AI Response -->
+              <div class="message msg-ai">
+                <div class="msg-avatar ai-avatar">
+                  <i data-lucide="sprout"></i>
+                </div>
+                <div class="msg-bubble">
+                  <p>Yellowing leaves on tomato crops can signal nitrogen deficiency or slight under-watering. Based on your live North Field telemetry, <strong>soil moisture is currently at 42%</strong> (slightly below target).</p>
+                  
+                  <div class="ai-recommendations-box">
+                    <div class="rec-title"><i data-lucide="check-square"></i> Actionable AI Plan:</div>
+                    <div class="rec-list">
+                      <div class="rec-item">💧 <span><strong>Irrigation:</strong> Extend drip cycle by 15 mins today after 5:00 PM.</span></div>
+                      <div class="rec-item">🌱 <span><strong>Nutrition:</strong> Apply organic nitrogen liquid feed in next fertigation.</span></div>
+                      <div class="rec-item">🔍 <span><strong>Inspection:</strong> Check lower leaves for early aphids or yellow spots.</span></div>
+                    </div>
+                  </div>
+                  <span class="msg-time">10:43 AM</span>
+                </div>
+              </div>
+            </div>
+
+            <!-- Quick Preset Prompt Pills -->
+            <div class="preset-prompts">
+              <span class="preset-title">Quick Queries:</span>
+              <button class="preset-btn" onclick="sendPresetQuery('My tomato leaves are turning yellow. What should I check?')">🍅 Yellow tomato leaves</button>
+              <button class="preset-btn" onclick="sendPresetQuery('When is the best time to apply fertilizer for wheat?')">🌾 Wheat fertilization timing</button>
+              <button class="preset-btn" onclick="sendPresetQuery('Is rain expected in Vadodara this week?')">🌧 Vadodara rain forecast</button>
+              <button class="preset-btn" onclick="sendPresetQuery('What is the current market rate for cotton in Gujarat?')">💰 Gujarat Cotton market rate</button>
+            </div>
+
+            <!-- Chat Input Box -->
+            <div class="chat-input-wrapper">
+              <input type="text" id="chatInput" placeholder="Ask AgriSathi AI anything about your farm, crops, or market prices..." onkeypress="handleChatKeyPress(event)">
+              <button class="btn btn-primary" id="sendMessageBtn" onclick="submitUserQuery()">
+                <span>Ask AI</span>
+                <i data-lucide="send"></i>
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================================================== -->
+    <!-- 6. LIVE DASHBOARD CONTROL CENTER -->
+    <!-- ================================================== -->
+    <section class="section dashboard-showcase-section" id="dashboard-section">
+      <div class="container">
+        <div class="section-header text-center">
+          <span class="section-tag">CONTROL CENTER</span>
+          <h2 class="section-title">See your farm at a glance.</h2>
+          <p class="section-subtitle">Real-time telemetry, IoT ground sensors, satellite index, and yield forecasts consolidated in one view.</p>
+        </div>
+
+        <!-- Dashboard UI Showcase Card -->
+        <div class="dashboard-mockup-card">
+          <!-- Top Toolbar -->
+          <div class="dashboard-toolbar">
+            <div class="dash-farm-selector">
+              <i data-lucide="map-pin" class="icon-emerald"></i>
+              <span><strong>GreenValley Farm</strong> (Zone A - Vadodara)</span>
+              <span class="dash-badge"><span class="pulse-dot"></span> Live Telemetry</span>
+            </div>
+            <div class="dash-toolbar-actions">
+              <span class="time-stamp"><i data-lucide="clock"></i> Last updated: Just now</span>
+              <button class="btn btn-sm btn-outline" id="openFullDashBtn">
+                <i data-lucide="maximize-2"></i> Full View
+              </button>
+            </div>
+          </div>
+
+          <!-- Top Stats Grid -->
+          <div class="dashboard-stats-grid">
+            <div class="dash-stat-card">
+              <div class="dash-stat-head">
+                <span class="stat-title">Total Active Fields</span>
+                <i data-lucide="grid" class="stat-icon"></i>
+              </div>
+              <div class="stat-val">4</div>
+              <div class="stat-sub">12.5 Total Acres</div>
+            </div>
+
+            <div class="dash-stat-card">
+              <div class="dash-stat-head">
+                <span class="stat-title">Crop Vigour Index</span>
+                <i data-lucide="activity" class="stat-icon icon-emerald"></i>
+              </div>
+              <div class="stat-val">92%</div>
+              <div class="stat-sub text-success"><i data-lucide="trending-up"></i> +4% vs last week</div>
+            </div>
+
+            <div class="dash-stat-card">
+              <div class="dash-stat-head">
+                <span class="stat-title">Soil Moisture</span>
+                <i data-lucide="droplets" class="stat-icon icon-teal"></i>
+              </div>
+              <div class="stat-val">68%</div>
+              <div class="stat-sub text-info">Optimal Moisture</div>
+            </div>
+
+            <div class="dash-stat-card">
+              <div class="dash-stat-head">
+                <span class="stat-title">Projected Yield</span>
+                <i data-lucide="trending-up" class="stat-icon icon-amber"></i>
+              </div>
+              <div class="stat-val">+14%</div>
+              <div class="stat-sub text-success">vs Regional Average</div>
+            </div>
+          </div>
+
+          <!-- Main Dashboard Body: Charts & Visuals -->
+          <div class="dashboard-body-grid">
+            <!-- Soil Moisture & Temp Chart -->
+            <div class="dash-panel panel-chart">
+              <div class="panel-head">
+                <h4><i data-lucide="line-chart"></i> Soil Moisture & Ambient Temperature (7-Day Trend)</h4>
+                <div class="chart-legend-custom">
+                  <span class="lg-dot dot-moisture"></span> Soil Moisture (%)
+                  <span class="lg-dot dot-temp"></span> Temperature (°C)
+                </div>
+              </div>
+              <div class="chart-container">
+                <canvas id="soilMoistureChart"></canvas>
+              </div>
+            </div>
+
+            <!-- Field Breakdown & AI Alert -->
+            <div class="dash-panel panel-side">
+              <div class="ai-floating-alert">
+                <div class="alert-head">
+                  <i data-lucide="bell" class="alert-icon"></i>
+                  <strong>AI Telemetry Recommendation</strong>
+                </div>
+                <p>"Block B Tomato field moisture is at 42%. Heat spike expected at 2:00 PM."</p>
+                <button class="btn btn-sm btn-primary mt-2" onclick="triggerIrrigationDemo()">
+                  <i data-lucide="play-circle"></i> Start Automated Drip
+                </button>
+              </div>
+
+              <!-- Quick Status List -->
+              <div class="field-status-list">
+                <h5 class="list-head">Active Crop Blocks</h5>
+                <div class="field-row">
+                  <div class="field-info">
+                    <strong>Block A - Sharbati Wheat</strong>
+                    <span>4.2 Acres • Flowering</span>
+                  </div>
+                  <span class="badge badge-success">Optimal</span>
+                </div>
+                <div class="field-row">
+                  <div class="field-info">
+                    <strong>Block B - Organic Tomato</strong>
+                    <span>3.0 Acres • Fruit Growth</span>
+                  </div>
+                  <span class="badge badge-warning">Low Moisture</span>
+                </div>
+                <div class="field-row">
+                  <div class="field-info">
+                    <strong>Block C - Long Cotton</strong>
+                    <span>5.3 Acres • Vegetative</span>
+                  </div>
+                  <span class="badge badge-success">Optimal</span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Bottom CTA -->
+          <div class="dashboard-mockup-footer text-center">
+            <button class="btn btn-primary btn-lg" onclick="openFullDashboardModal()">
+              <span>Launch Control Center</span>
+              <i data-lucide="arrow-right"></i>
+            </button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================================================== -->
+    <!-- 7. CROP MONITORING & GROWTH TRACKER -->
+    <!-- ================================================== -->
+    <section class="section crop-monitoring-section" id="crop-monitoring">
+      <div class="container">
+        <div class="crop-grid">
+          <!-- Left Visual Image Card -->
+          <div class="crop-image-card">
+            <img src="images/crop-field.jpg" alt="Crop Field Monitoring" class="crop-img">
+            <div class="crop-img-overlay">
+              <div class="scanner-line"></div>
+              <div class="scan-tag"><i data-lucide="camera"></i> AI Field Scanner: <strong>Active</strong></div>
+            </div>
+          </div>
+
+          <!-- Right Content & Metrics -->
+          <div class="crop-content">
+            <span class="section-tag">REAL-TIME FIELD SENSING</span>
+            <h2 class="section-title">Detect stress before crops suffer.</h2>
+            <p class="section-subtitle">Combining satellite optical sensing with IoT soil nodes for early detection of water deficit, pest threat, and nutrient imbalances.</p>
+
+            <!-- Metrics Cards Grid -->
+            <div class="grid grid-2 crop-metrics-cards">
+              <div class="metric-card">
+                <div class="m-icon icon-emerald"><i data-lucide="activity"></i></div>
+                <div>
+                  <span class="m-label">Crop Vigour</span>
+                  <div class="m-val">92%</div>
+                  <span class="m-status text-success">Healthy Canopy</span>
+                </div>
+              </div>
+
+              <div class="metric-card">
+                <div class="m-icon icon-amber"><i data-lucide="shield-check"></i></div>
+                <div>
+                  <span class="m-label">Disease Index</span>
+                  <div class="m-val">Low</div>
+                  <span class="m-status text-success">No active blight</span>
+                </div>
+              </div>
+
+              <div class="metric-card">
+                <div class="m-icon icon-teal"><i data-lucide="droplet"></i></div>
+                <div>
+                  <span class="m-label">Soil Hydration</span>
+                  <div class="m-val">68%</div>
+                  <span class="m-status text-info">Target 65-75%</span>
+                </div>
+              </div>
+
+              <div class="metric-card">
+                <div class="m-icon icon-purple"><i data-lucide="flower"></i></div>
+                <div>
+                  <span class="m-label">Growth Phase</span>
+                  <div class="m-val">Flowering</div>
+                  <span class="m-status text-purple">Day 48 of cycle</span>
+                </div>
+              </div>
+            </div>
+
+            <!-- Growth Timeline Interactive Widget -->
+            <div class="growth-timeline-widget">
+              <h4>Interactive Growth Cycle Tracker</h4>
+              <div class="timeline-steps">
+                <div class="t-step step-done" onclick="setGrowthStage(1)">
+                  <div class="step-circle"><i data-lucide="check"></i></div>
+                  <span>Seed</span>
+                </div>
+                <div class="t-line line-done"></div>
+
+                <div class="t-step step-done" onclick="setGrowthStage(2)">
+                  <div class="step-circle"><i data-lucide="check"></i></div>
+                  <span>Vegetative</span>
+                </div>
+                <div class="t-line line-active"></div>
+
+                <div class="t-step step-active" onclick="setGrowthStage(3)">
+                  <div class="step-circle">3</div>
+                  <span>Flowering</span>
+                </div>
+                <div class="t-line"></div>
+
+                <div class="t-step" onclick="setGrowthStage(4)">
+                  <div class="step-circle">4</div>
+                  <span>Harvest</span>
+                </div>
+              </div>
+              <div class="timeline-desc" id="growthStageDesc">
+                <strong>Flowering Stage (Current):</strong> Crop requires consistent moisture and phosphorus boost. AI predicts harvest readiness in 22 days.
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================================================== -->
+    <!-- 8. DIRECT FARMER COMMERCE MARKETPLACE -->
+    <!-- ================================================== -->
+    <section class="section marketplace-section" id="marketplace">
+      <div class="container">
+        <div class="section-header text-center">
+          <span class="section-tag">DIRECT FARMER COMMERCE</span>
+          <h2 class="section-title">Trade directly. Earn full value.</h2>
+          <p class="section-subtitle">Discover live mandi rates, list your harvested crops, and deal directly with verified agricultural buyers.</p>
+        </div>
+
+        <!-- Filter Controls Bar -->
+        <div class="market-controls">
+          <div class="market-categories" id="marketTabs">
+            <button class="tab-btn active" data-cat="all">All Produce</button>
+            <button class="tab-btn" data-cat="grains">Grains & Pulses</button>
+            <button class="tab-btn" data-cat="vegetables">Vegetables</button>
+            <button class="tab-btn" data-cat="commercial">Commercial Crops</button>
+          </div>
+          <button class="btn btn-outline btn-sm" onclick="openListProduceModal()">
+            <i data-lucide="plus-circle"></i> List My Harvest
+          </button>
+        </div>
+
+        <!-- Marketplace Cards Grid -->
+        <div class="grid grid-3 market-cards-grid" id="marketGrid">
+          <!-- Card 1: Wheat -->
+          <div class="market-card" data-cat="grains">
+            <div class="market-img-wrap">
+              <img src="images/produce-wheat.jpg" alt="Golden Wheat Harvest">
+              <span class="price-tag">₹2,450 / qtl</span>
+            </div>
+            <div class="market-body">
+              <div class="market-head">
+                <h3>Sharbati Wheat</h3>
+                <span class="location-badge"><i data-lucide="map-pin"></i> Vadodara, GJ</span>
+              </div>
+              <div class="market-meta">
+                <span>Quantity: <strong>120 Quintals</strong></span>
+                <span class="trend-up"><i data-lucide="trending-up"></i> +3.2% this week</span>
+              </div>
+              <p class="market-seller">👨‍🌾 Listed by: <strong>Ramesh Patel</strong> (Verified Farmer)</p>
+              <div class="market-actions">
+                <button class="btn btn-primary btn-sm w-full" onclick="openBuyModal('Sharbati Wheat', '₹2,450 / qtl', 'Ramesh Patel', 'Vadodara')">
+                  Contact Buyer / Trade
+                </button>
+              </div>
+            </div>
+          </div>
+
+          <!-- Card 2: Tomato -->
+          <div class="market-card" data-cat="vegetables">
+            <div class="market-img-wrap">
+              <img src="images/produce-tomato.jpg" alt="Fresh Tomatoes">
+              <span class="price-tag">₹1,850 / qtl</span>
+            </div>
+            <div class="market-body">
+              <div class="market-head">
+                <h3>Fresh Organic Tomatoes</h3>
+                <span class="location-badge"><i data-lucide="map-pin"></i> Ahmedabad, GJ</span>
+              </div>
+              <div class="market-meta">
+                <span>Quantity: <strong>45 Quintals</strong></span>
+                <span class="trend-up"><i data-lucide="trending-up"></i> +5.1% this week</span>
+              </div>
+              <p class="market-seller">👨‍🌾 Listed by: <strong>Vikram Singh</strong> (Verified Farmer)</p>
+              <div class="market-actions">
+                <button class="btn btn-primary btn-sm w-full" onclick="openBuyModal('Fresh Tomatoes', '₹1,850 / qtl', 'Vikram Singh', 'Ahmedabad')">
+                  Contact Buyer / Trade
+                </button>
+              </div>
+            </div>
+          </div>
+
+          <!-- Card 3: Cotton -->
+          <div class="market-card" data-cat="commercial">
+            <div class="market-img-wrap">
+              <img src="images/hero-farm.jpg" alt="Raw Cotton Crop">
+              <span class="price-tag">₹7,200 / qtl</span>
+            </div>
+            <div class="market-body">
+              <div class="market-head">
+                <h3>Long Staple Cotton</h3>
+                <span class="location-badge"><i data-lucide="map-pin"></i> Rajkot, GJ</span>
+              </div>
+              <div class="market-meta">
+                <span>Quantity: <strong>200 Quintals</strong></span>
+                <span class="trend-up"><i data-lucide="trending-up"></i> +2.0% this week</span>
+              </div>
+              <p class="market-seller">👨‍🌾 Listed by: <strong>Kishan Patel</strong> (Verified Farmer)</p>
+              <div class="market-actions">
+                <button class="btn btn-primary btn-sm w-full" onclick="openBuyModal('Long Staple Cotton', '₹7,200 / qtl', 'Kishan Patel', 'Rajkot')">
+                  Contact Buyer / Trade
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Mandi Price Trends Chart Card -->
+        <div class="market-trend-card">
+          <div class="trend-head">
+            <div>
+              <h4><i data-lucide="line-chart" class="icon-emerald"></i> Regional Mandi Price Movements</h4>
+              <p>Updated hourly from national APMC commodities exchange feeds</p>
+            </div>
+            <div class="trend-legend">
+              <span class="dot-wheat"></span> Wheat (Vadodara)
+              <span class="dot-cotton"></span> Cotton (Rajkot)
+            </div>
+          </div>
+          <div class="chart-container-sm">
+            <canvas id="marketTrendChart"></canvas>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================================================== -->
+    <!-- 9. WEATHER INTELLIGENCE SECTION -->
+    <!-- ================================================== -->
+    <section class="section weather-section" id="weather">
+      <div class="container">
+        <div class="weather-grid">
+          <!-- Weather Intelligence Card -->
+          <div class="weather-card">
+            <div class="weather-head">
+              <div>
+                <span class="w-location"><i data-lucide="map-pin"></i> Field Location: Vadodara</span>
+                <h3 class="w-temp-main">28°C</h3>
+                <span class="w-condition">Partly Cloudy</span>
+              </div>
+              <div class="w-main-icon">
+                <i data-lucide="sun"></i>
+              </div>
+            </div>
+
+            <!-- Weather Details Grid -->
+            <div class="weather-details">
+              <div class="w-detail-item">
+                <i data-lucide="droplet" class="text-teal"></i>
+                <div>
+                  <span class="w-lbl">Humidity</span>
+                  <strong>64%</strong>
+                </div>
+              </div>
+
+              <div class="w-detail-item">
+                <i data-lucide="cloud-rain" class="text-teal"></i>
+                <div>
+                  <span class="w-lbl">Rain Probability</span>
+                  <strong>30%</strong>
+                </div>
+              </div>
+
+              <div class="w-detail-item">
+                <i data-lucide="wind" class="icon-emerald"></i>
+                <div>
+                  <span class="w-lbl">Wind Speed</span>
+                  <strong>12 km/h</strong>
+                </div>
+              </div>
+
+              <div class="w-detail-item">
+                <i data-lucide="sun" class="icon-amber"></i>
+                <div>
+                  <span class="w-lbl">UV Index</span>
+                  <strong>Moderate (5)</strong>
+                </div>
+              </div>
+            </div>
+
+            <!-- 5-Day Forecast Strip -->
+            <div class="weather-forecast-strip">
+              <div class="f-day active">
+                <span>Today</span>
+                <i data-lucide="sun"></i>
+                <strong>28°C</strong>
+              </div>
+              <div class="f-day">
+                <span>Fri</span>
+                <i data-lucide="cloud-rain"></i>
+                <strong>25°C</strong>
+              </div>
+              <div class="f-day">
+                <span>Sat</span>
+                <i data-lucide="sun"></i>
+                <strong>30°C</strong>
+              </div>
+              <div class="f-day">
+                <span>Sun</span>
+                <i data-lucide="sun"></i>
+                <strong>31°C</strong>
+              </div>
+              <div class="f-day">
+                <span>Mon</span>
+                <i data-lucide="zap"></i>
+                <strong>24°C</strong>
+              </div>
+            </div>
+          </div>
+
+          <!-- AI Weather Advice Box -->
+          <div class="weather-advice-card">
+            <div class="advice-badge"><i data-lucide="sparkles"></i> AI Weather Advisory</div>
+            <h3>Plan around the weather.</h3>
+            <blockquote class="advice-text">
+              "30% rain probability tomorrow afternoon. Postpone chemical pesticide spraying by 24 hours to avoid rain wash-off. Soil humidity levels will support wheat grain growth."
+            </blockquote>
+
+            <div class="advice-actions">
+              <div class="advice-action-item">
+                <i data-lucide="check-circle-2" class="text-emerald"></i>
+                <span>Hold off spraying till Saturday morning</span>
+              </div>
+              <div class="advice-action-item">
+                <i data-lucide="check-circle-2" class="text-emerald"></i>
+                <span>Ensure drainage channels around Block B tomato beds are clear</span>
+              </div>
+            </div>
+
+            <button class="btn btn-primary mt-4" onclick="scrollToSection('ai-assistant')">
+              <span>Ask AI for Field Weather Advice</span>
+              <i data-lucide="arrow-right"></i>
+            </button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================================================== -->
+    <!-- 10. HOW IT WORKS / ONBOARDING -->
+    <!-- ================================================== -->
+    <section class="section how-it-works-section" id="how-it-works">
+      <div class="container">
+        <div class="section-header text-center">
+          <span class="section-tag">SIMPLE ONBOARDING</span>
+          <h2 class="section-title">Start farming smarter in four steps.</h2>
+          <p class="section-subtitle">No complex hardware required. Setup your field profile directly from your smartphone.</p>
+        </div>
+
+        <div class="grid grid-4 steps-grid">
+          <!-- Step 01 -->
+          <div class="step-card">
+            <div class="step-number">01</div>
+            <h3>Create your farm profile</h3>
+            <p>Select field location, acreage, crop varieties, and sowing dates in under 2 minutes.</p>
+          </div>
+
+          <!-- Step 02 -->
+          <div class="step-card">
+            <div class="step-number">02</div>
+            <h3>Sync field telemetry</h3>
+            <p>Connect satellite multi-spectral streams or ground IoT sensor nodes.</p>
+          </div>
+
+          <!-- Step 03 -->
+          <div class="step-card">
+            <div class="step-number">03</div>
+            <h3>Get AI insights</h3>
+            <p>Receive proactive push alerts for irrigation timing, disease warnings, and weather risks.</p>
+          </div>
+
+          <!-- Step 04 -->
+          <div class="step-card">
+            <div class="step-number">04</div>
+            <h3>Execute & trade</h3>
+            <p>Save water, reduce input costs, optimize crop yield, and sell directly on the marketplace.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================================================== -->
+    <!-- 11. IMPACT METRICS -->
+    <!-- ================================================== -->
+    <section class="impact-section" id="impact">
+      <div class="container">
+        <div class="impact-header text-center">
+          <span class="impact-tag">PROVEN FIELD RESULTS</span>
+          <h2>Empowering farmers with technology that delivers results.</h2>
+          <p class="impact-sub">Field statistics compiled across pilot deployments in Gujarat & Maharashtra.</p>
+        </div>
+
+        <div class="grid grid-4 impact-grid">
+          <div class="impact-card">
+            <div class="impact-val-container">
+              <span class="impact-val" data-target="10000">0</span><span class="impact-plus">+</span>
+            </div>
+            <p class="impact-label">Farmers Supported</p>
+          </div>
+
+          <div class="impact-card">
+            <div class="impact-val-container">
+              <span class="impact-val" data-target="25">0</span><span class="impact-plus">%</span>
+            </div>
+            <p class="impact-label">Water Savings</p>
+          </div>
+
+          <div class="impact-card">
+            <div class="impact-val-container">
+              <span class="impact-val" data-target="15">0</span><span class="impact-plus">%</span>
+            </div>
+            <p class="impact-label">Higher Crop Yield</p>
+          </div>
+
+          <div class="impact-card">
+            <div class="impact-val-container">
+              <span class="impact-val-text">24/7</span>
+            </div>
+            <p class="impact-label">Telemetry & Support</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================================================== -->
+    <!-- 12. TESTIMONIALS -->
+    <!-- ================================================== -->
+    <section class="section testimonials-section" id="testimonials">
+      <div class="container">
+        <div class="section-header text-center">
+          <span class="section-tag">FARMER STORIES</span>
+          <h2 class="section-title">Trusted by progressive growers.</h2>
+          <p class="section-subtitle">See how AgriSathi transformed daily farm management and crop profitability.</p>
+        </div>
+
+        <div class="grid grid-3 testimonials-grid">
+          <!-- Card 1 -->
+          <div class="testimonial-card">
+            <div class="t-stars">⭐⭐⭐⭐⭐</div>
+            <p class="t-quote">"AgriSathi makes field telemetry so simple to understand. The soil moisture alerts saved my tomato crop during the last heatwave."</p>
+            <div class="t-author">
+              <div class="t-avatar">👨‍🌾</div>
+              <div>
+                <strong>Ramesh Patel</strong>
+                <span>Vadodara, Gujarat • Wheat & Tomato</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Card 2 -->
+          <div class="testimonial-card">
+            <div class="t-stars">⭐⭐⭐⭐⭐</div>
+            <p class="t-quote">"The AI assistant is like having a veteran agronomist on speed dial. Asking questions in simple terms cut my fertilizer costs by 20%."</p>
+            <div class="t-author">
+              <div class="t-avatar">🌾</div>
+              <div>
+                <strong>Suresh Kumar</strong>
+                <span>Nashik, Maharashtra • Grape & Cotton</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Card 3 -->
+          <div class="testimonial-card">
+            <div class="t-stars">⭐⭐⭐⭐⭐</div>
+            <p class="t-quote">"Selling my cotton crop on AgriSathi Marketplace bypassed trader commissions. I gained ₹300 higher per quintal directly from a Rajkot textile buyer."</p>
+            <div class="t-author">
+              <div class="t-avatar">👩‍🌾</div>
+              <div>
+                <strong>Sunita Devi</strong>
+                <span>Rajkot, Gujarat • Cotton Farmer</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================================================== -->
+    <!-- 13. CALL TO ACTION -->
+    <!-- ================================================== -->
+    <section class="final-cta-section">
+      <div class="container">
+        <div class="cta-box">
+          <div class="cta-content">
+            <div class="cta-badge"><i data-lucide="sprout"></i> Join the Smart Agriculture Movement</div>
+            <h2>Your farm is ready for precision AI.</h2>
+            <p>Bring live telemetry, satellite analytics, and direct market access to your crops today.</p>
+            <div class="cta-buttons">
+              <button class="btn btn-primary btn-lg glow-effect" onclick="openAuthModal('signup')">
+                <span>Get Started Now</span>
+                <i data-lucide="arrow-right"></i>
+              </button>
+              <a href="#features" class="btn btn-secondary btn-lg">Explore Features</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- ================================================== -->
+  <!-- 14. FOOTER -->
+  <!-- ================================================== -->
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-top">
+        <!-- Brand Info -->
+        <div class="footer-brand">
+          <a href="#hero" class="nav-brand text-white">
+            <div class="brand-icon"><i data-lucide="sprout"></i></div>
+            <span class="brand-name">AgriSathi<span class="brand-dot">.</span></span>
+          </a>
+          <p class="footer-tagline">"Precision technology for modern agriculture."</p>
+          <p class="footer-desc">AgriSathi empowers farmers with AI insights, field telemetry, micro-climate weather forecasts, and direct APMC buyer access.</p>
+        </div>
+
+        <!-- Links Columns -->
+        <div class="footer-links-grid">
+          <div class="footer-col">
+            <h4>Platform</h4>
+            <a href="#dashboard-section">Control Center</a>
+            <a href="#crop-monitoring">Crop Sensing</a>
+            <a href="#ai-assistant">AI Assistant</a>
+            <a href="#marketplace">Marketplace</a>
+          </div>
+
+          <div class="footer-col">
+            <h4>Resources</h4>
+            <a href="#weather">Farming Tips</a>
+            <a href="#weather">Weather Forecast</a>
+            <a href="#marketplace">Market Rates</a>
+            <a href="#how-it-works">Onboarding Guide</a>
+          </div>
+
+          <div class="footer-col">
+            <h4>Company</h4>
+            <a href="#hero">About AgriSathi</a>
+            <a href="#impact">Field Impact</a>
+            <a href="#" onclick="alert('Contact: support@agrisathi.farm')">Contact Support</a>
+            <a href="#" onclick="alert('AgriSathi Privacy Policy')">Privacy Policy</a>
+            <a href="#" onclick="alert('AgriSathi Terms of Service')">Terms of Service</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="footer-bottom">
+        <p>© 2026 AgriSathi Inc. All rights reserved.</p>
+        <div class="footer-socials">
+          <a href="#" aria-label="Globe"><i data-lucide="globe"></i></a>
+          <a href="#" aria-label="Share"><i data-lucide="share-2"></i></a>
+          <a href="#" aria-label="Chat"><i data-lucide="message-square"></i></a>
+          <a href="#" aria-label="Phone"><i data-lucide="phone"></i></a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- ================================================== -->
+  <!-- MODAL DIALOGS -->
+  <!-- ================================================== -->
+
+  <!-- Modal 1: Sign In / Register Modal -->
+  <div class="modal-backdrop" id="authModal">
+    <div class="modal-card">
+      <button class="modal-close" onclick="closeModal('authModal')"><i data-lucide="x"></i></button>
+      <div class="modal-header">
+        <div class="brand-icon"><i data-lucide="sprout"></i></div>
+        <h3 id="authModalTitle">Welcome to AgriSathi</h3>
+        <p id="authModalSub">Sign in to manage field telemetry & marketplace trades.</p>
+      </div>
+      <form class="modal-form" onsubmit="handleAuthSubmit(event)">
+        <div class="form-group">
+          <label for="authPhone">Mobile Number or Email</label>
+          <input type="text" id="authPhone" placeholder="+91 98765 43210" required>
+        </div>
+        <div class="form-group">
+          <label for="authPass">Password / OTP</label>
+          <input type="password" id="authPass" placeholder="••••••••" required>
+        </div>
+        <button type="submit" class="btn btn-primary w-full btn-lg mt-2">Continue to Control Center</button>
+      </form>
+    </div>
+  </div>
+
+  <!-- Modal 2: Contact Buyer / Order Modal -->
+  <div class="modal-backdrop" id="buyModal">
+    <div class="modal-card">
+      <button class="modal-close" onclick="closeModal('buyModal')"><i data-lucide="x"></i></button>
+      <div class="modal-header">
+        <div class="badge badge-success"><i data-lucide="shopping-bag"></i> Direct Mandi Trade</div>
+        <h3 id="buyCropName">Sharbati Wheat</h3>
+        <p>Market Rate: <strong id="buyCropPrice">₹2,450 / qtl</strong></p>
+      </div>
+      <div class="trade-info-box">
+        <p><strong>Seller:</strong> <span id="buySeller">Ramesh Patel</span></p>
+        <p><strong>Location:</strong> <span id="buyLocation">Vadodara, Gujarat</span></p>
+        <p><strong>Quality Grade:</strong> Grade A Certified</p>
+      </div>
+      <form class="modal-form" onsubmit="handleBuySubmit(event)">
+        <div class="form-group">
+          <label>Your Offer Quantity (Quintals)</label>
+          <input type="number" value="10" min="1" required>
+        </div>
+        <div class="form-group">
+          <label>Contact Phone Number</label>
+          <input type="tel" placeholder="+91 98765 43210" required>
+        </div>
+        <button type="submit" class="btn btn-primary w-full btn-lg">Send Buy Request to Farmer</button>
+      </form>
+    </div>
+  </div>
+
+  <!-- Modal 3: List Produce Modal -->
+  <div class="modal-backdrop" id="listModal">
+    <div class="modal-card">
+      <button class="modal-close" onclick="closeModal('listModal')"><i data-lucide="x"></i></button>
+      <div class="modal-header">
+        <div class="brand-icon"><i data-lucide="plus-circle"></i></div>
+        <h3>List Produce on AgriSathi Marketplace</h3>
+        <p>Reach verified buyers directly with zero middleman fee.</p>
+      </div>
+      <form class="modal-form" onsubmit="handleListProduceSubmit(event)">
+        <div class="form-group">
+          <label>Crop Name</label>
+          <input type="text" placeholder="e.g. Basmati Rice, Cotton" required>
+        </div>
+        <div class="form-group">
+          <label>Category</label>
+          <select required>
+            <option value="grains">Grains & Pulses</option>
+            <option value="vegetables">Vegetables</option>
+            <option value="commercial">Commercial Crops</option>
+          </select>
+        </div>
+        <div class="grid grid-2 gap-2">
+          <div class="form-group">
+            <label>Price per Quintal (₹)</label>
+            <input type="number" placeholder="2500" required>
+          </div>
+          <div class="form-group">
+            <label>Quantity (Quintals)</label>
+            <input type="number" placeholder="50" required>
+          </div>
+        </div>
+        <div class="form-group">
+          <label>Farm Location (City, State)</label>
+          <input type="text" placeholder="Vadodara, Gujarat" required>
+        </div>
+        <button type="submit" class="btn btn-primary w-full btn-lg mt-2">Publish Produce Listing</button>
+      </form>
+    </div>
+  </div>
+
+  <!-- Modal 4: Full Interactive Dashboard Overlay -->
+  <div class="modal-backdrop full-dash-backdrop" id="fullDashModal">
+    <div class="full-dash-card">
+      <div class="full-dash-header">
+        <div class="nav-brand text-white">
+          <div class="brand-icon"><i data-lucide="sprout"></i></div>
+          <span class="brand-name">AgriSathi Control Center</span>
+        </div>
+        <button class="modal-close text-white" onclick="closeModal('fullDashModal')"><i data-lucide="x"></i></button>
+      </div>
+
+      <div class="full-dash-body">
+        <div class="full-dash-stats grid grid-4">
+          <div class="f-stat-item">
+            <span>Overall Field Health</span>
+            <strong>92% (Optimal)</strong>
+          </div>
+          <div class="f-stat-item">
+            <span>Soil Moisture (Average)</span>
+            <strong>68% (Target Met)</strong>
+          </div>
+          <div class="f-stat-item">
+            <span>Active IoT Sensors</span>
+            <strong>16 Connected Nodes</strong>
+          </div>
+          <div class="f-stat-item">
+            <span>Next Drip Schedule</span>
+            <strong>5:30 PM Today</strong>
+          </div>
+        </div>
+
+        <div class="full-dash-charts grid grid-2">
+          <div class="dash-panel">
+            <h4>Live Soil Hydration Graph</h4>
+            <div class="chart-container">
+              <canvas id="fullDashChart1"></canvas>
+            </div>
+          </div>
+          <div class="dash-panel">
+            <h4>Health Distribution Across Blocks</h4>
+            <div class="chart-container">
+              <canvas id="fullDashChart2"></canvas>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script src="app.js"></script>
+  <script>
+    // Initialize Lucide icons
+    if (window.lucide) {
+      lucide.createIcons();
+    }
+  </script>
+</body>
+</html>
